@@ -2,9 +2,13 @@ const express = require("express")
 const http = require("http")
 const path = require("path")
 const socketio = require("socket.io")
+const LocationModel = require("./models/LocationModel")
+const connectDB = require("./config/db")
 
 const app = express()
 const server = http.createServer(app)
+
+connectDB()
 
 const io = socketio(server)
 
@@ -15,8 +19,15 @@ app.use(express.static(path.join(__dirname, "public")))
 io.on("connection", (socket) => {
     //console.log("connected io")
     
-    socket.on("send-location", (data) => {
-        io.emit("receive-location", { id: socket.id, ...data })
+    socket.on("send-location", async (data) => {
+        try {
+            const location = new LocationModel(data);
+            await location.save();
+            console.log(location)
+            io.emit("receive-location", { id: socket.id, ...data });
+        } catch (error) {
+            console.error("Error saving location:", error);
+        }
     })
 
     socket.on("disconnect",()=>{

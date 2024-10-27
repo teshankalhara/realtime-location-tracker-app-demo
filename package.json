@@ -12,6 +12,7 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.21.1",
+    "mongoose": "^8.7.3",
     "nodemon": "^3.1.7",
     "realtime-location-tracker-app": "file:",
     "socket.io": "^4.8.1"
