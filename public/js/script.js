@@ -1,22 +1,5 @@
 const socket = io()
 
-//console.log("Hi")
-
-/*users
-if (navigator.geolocation) {
-    navigator.geolocation.watchPosition((position) => {//watch position database for users
-        const { latitude, longitude } = {latitude:6.9271, longitude:79.8612}
-        socket.emit("send-location", { latitude, longitude })
-    }, (error) => {
-        console.log(error)
-    }, {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0,
-    })
-}
-*/
-
 //bus
 if (navigator.geolocation) {
     navigator.geolocation.watchPosition((position) => {
